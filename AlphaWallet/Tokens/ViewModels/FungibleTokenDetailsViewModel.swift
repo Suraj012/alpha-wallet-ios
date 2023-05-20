@@ -95,7 +95,12 @@ final class FungibleTokenDetailsViewModel {
 
     private func buildFungibleTokenAction(for action: TokenInstanceAction) -> FungibleTokenAction? {
         switch action.type {
-        case .swap: return .swap(swapTokenFlow: .swapToken(token: token))
+        case .swap:
+            let fungibleBalance = tokensService.tokenViewModel(for: token)?.balance.value
+            if fungibleBalance != 0 {
+                return .swap(swapTokenFlow: .swapToken(token: token))
+            }
+            return .display(warning: "No available balance to swap")
         case .erc20Send: return .erc20Transfer(token: token)
         case .erc20Receive: return .erc20Receive(token: token)
         case .nftRedeem, .nftSell, .nonFungibleTransfer: return nil

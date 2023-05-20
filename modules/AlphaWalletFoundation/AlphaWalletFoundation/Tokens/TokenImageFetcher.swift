@@ -138,8 +138,13 @@ public class TokenImageFetcherImpl: TokenImageFetcher {
 
         switch type {
         case .nativeCryptocurrency:
-            if let img = iconImageForContractAndChainID(image: serverIconImage, address: contractAddress.eip55String, chainID: server.chainID) {
-                return TokenImage(image: .image(.loaded(image: img)), isFinal: true, overlayServerIcon: nil)
+            if server == .fantom {
+                // Contract address is not available so i add a static url on it.
+                return TokenImage(image: ImageOrWebImageUrl<RawImage>.url(WebImageURL(string: "https://assets.lif3.com/wallet/tokens/FTM/0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83.svg")!), isFinal: true, overlayServerIcon: nil)
+            } else {
+                if let img = iconImageForContractAndChainID(image: serverIconImage, address: contractAddress.eip55String, chainID: server.chainID) {
+                    return TokenImage(image: .image(.loaded(image: img)), isFinal: true, overlayServerIcon: nil)
+                }
             }
         case .erc20, .erc875, .erc721, .erc721ForTickets, .erc1155:
             if let img = iconImageForContractAndChainID(image: tokenImage, address: contractAddress.eip55String, chainID: server.chainID) {

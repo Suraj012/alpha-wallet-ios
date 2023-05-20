@@ -83,6 +83,7 @@ class FungibleTokenViewCell: UITableViewCell {
         fiatValueLabel.attributedText = viewModel.fiatValueAttributedString
 
         viewsWithContent.forEach { $0.alpha = viewModel.alpha }
+        
         tokenImageView.set(imageSource: viewModel.iconImage)
 
         blockChainTagLabel.configure(viewModel: viewModel.blockChainTagViewModel)

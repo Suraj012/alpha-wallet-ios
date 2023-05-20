@@ -133,24 +133,25 @@ class EthTokenViewCell: UITableViewCell {
 
     func configure(viewModel: EthTokenViewCellViewModel) {
         selectionStyle = .none
-
+        
         backgroundColor = Configuration.Color.Semantic.tableViewCellBackground
         background.backgroundColor = Configuration.Color.Semantic.tableViewCellBackground
         contentView.backgroundColor = Configuration.Color.Semantic.tableViewCellBackground
-
+        
         titleLabel.attributedText = viewModel.titleAttributedString
         titleLabel.baselineAdjustment = .alignCenters
-
+        
         cryptoValueLabel.attributedText = viewModel.cryptoValueAttributedString
         cryptoValueLabel.baselineAdjustment = .alignCenters
-
+        
         apprecation24hoursView.configure(viewModel: viewModel.apprecationViewModel)
-
+        
         priceChangeLabel.attributedText = viewModel.priceChangeAttributedString
-
+        
         fiatValueLabel.attributedText = viewModel.fiatValueAttributedString
-
+        
         viewsWithContent.forEach { $0.alpha = viewModel.alpha }
+        
         tokenImageView.set(imageSource: viewModel.iconImage)
 
         blockChainTagLabel.configure(viewModel: viewModel.blockChainTagViewModel)

@@ -663,9 +663,9 @@ public enum RPCServer: Hashable, CaseIterable {
 
     public var displayOrderPriority: Int {
         switch self {
-        case .main: return 1
-        case .xDai: return 2
-        case .classic: return 3
+        case .main: return 2
+        case .xDai: return 3
+        case .classic: return 4
         case .callisto: return 9
         case .goerli: return 10
         case .binance_smart_chain: return 12
@@ -673,7 +673,7 @@ public enum RPCServer: Hashable, CaseIterable {
         case .custom(let custom): return 300000 + custom.chainID
         case .heco: return 14
         case .heco_testnet: return 15
-        case .fantom: return 16
+        case .fantom: return 1
         case .fantom_testnet: return 17
         case .avalanche: return 18
         case .avalanche_testnet: return 19
